@@ -18,7 +18,7 @@ CURRENT_DATE=$(date +%Y-%m-%d)
 # Check if the script has already run today
 if grep -q "$CURRENT_DATE" "$LOG_FILE"; then
      echo "Script has already run today, therefore the wallpaper displayed will not change!"
-     #exit 0
+    
 fi
 
 # Select a random text file from the directory
