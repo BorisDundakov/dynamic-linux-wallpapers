@@ -13,7 +13,7 @@
     ```
 3) Add in your desired time to run the script: Example -> 8 AM every day + at system startup
 
-   ![crontab-setup](https://github.com/user-attachments/assets/1bb5c9dc-0720-4d66-a809-ff969f514bf0)
+   ![crontab-setup](crontab-setup.png)
 
 5) Execute the `dynamic_wallpaper.sh` script inside the repository
 
