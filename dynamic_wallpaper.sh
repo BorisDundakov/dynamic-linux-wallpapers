@@ -44,7 +44,7 @@ TEXT_WIDTH=$((SCREEN_WIDTH - 2 * MARGIN))
 # Create an image with the citation taking into account potential text overflow
 convert -size ${SCREEN_WIDTH}x${SCREEN_HEIGHT} xc:black -gravity center \
     	-font Ubuntu -pointsize 36 -fill white \
-	    -annotate +0+0 "$(
+	-annotate +0+0 "$(
         	echo "$CITATION" |
         	sed -E 's/(.{1,'$((SCREEN_WIDTH / 20))'})( |\$|\r|\n|,|!|\?|\.|$)/\1\n/g' |
         	sed 's/'\''/\\x27/g' |
