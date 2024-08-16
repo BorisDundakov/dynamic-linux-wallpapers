@@ -17,8 +17,8 @@ CURRENT_DATE=$(date +%Y-%m-%d)
 
 # Check if the script has already run today
 if grep -q "$CURRENT_DATE" "$LOG_FILE"; then
-     echo "Script has already run today, therefore the wallpaper displayed will not change!"
-    
+    echo "Script has already run today, therefore the wallpaper displayed will not change!"
+    exit 0
 fi
 
 # Select a random text file from the directory
@@ -41,11 +41,16 @@ MARGIN=20
 TEXT_WIDTH=$((SCREEN_WIDTH - 2 * MARGIN))
 
 
-# Create an image with the citation
-# TODO: Fix overflow with large amounts of text
+# Create an image with the citation taking into account potential text overflow
 convert -size ${SCREEN_WIDTH}x${SCREEN_HEIGHT} xc:black -gravity center \
-    -font Ubuntu -pointsize 36 -fill white \
-    -annotate +0+0 "$CITATION" "$OUTPUT_IMAGE" \
+    	-font Ubuntu -pointsize 36 -fill white \
+	    -annotate +0+0 "$(
+        	echo "$CITATION" |
+        	sed -E 's/(.{1,'$((SCREEN_WIDTH / 20))'})( |\$|\r|\n|,|!|\?|\.|$)/\1\n/g' |
+        	sed 's/'\''/\\x27/g' |
+        	sed 's/"/\\"/g'
+	        )" \
+	        "$OUTPUT_IMAGE"
 
 
 # Check if the image was created successfully
