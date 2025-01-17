@@ -62,4 +62,5 @@ if [ -f "$OUTPUT_IMAGE" ]; then
     echo "$CURRENT_DATE" > "$LOG_FILE"
 else
     echo "Failed to create the wallpaper image."
+	exit 1
 fi
